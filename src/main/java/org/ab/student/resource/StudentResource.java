@@ -21,6 +21,8 @@ import org.ab.student.service.StudentFinder;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @Path("students")
 @Api("Finds students")
@@ -37,19 +39,22 @@ public class StudentResource {
 	@GET
 	@Path("/{studentId}")
 	@ApiOperation(nickname = "findById", value = "Finds student details including classes and grades by student id", httpMethod = "GET")
+	@ApiResponses(value = { @ApiResponse(code = 200, response = Student.class, message = "OK"),
+			@ApiResponse(code = 404, message = "Not Found") })
 	public Student findById(@PathParam("studentId") Long studentId) {
 		return studentFinder.findById(studentId)
 				.orElseThrow(() -> new WebApplicationException(Response.Status.NOT_FOUND));
 	}
 
 	@GET
-	@ApiOperation(nickname = "findBy", value = "Finds student summaries by filtered by first and last names", httpMethod = "GET")
+	@ApiOperation(nickname = "findBy", value = "Finds student summaries by filtered by first and last names", httpMethod = "GET",
+			response = StudentSummary.class, responseContainer = "List")
 	public List<StudentSummary> findBy(@QueryParam("firstName") String first, @QueryParam("lastName") String last,
 			@QueryParam("countMax") Integer countMax) {
 		return studentFinder.findBy(Optional.ofNullable(first), Optional.ofNullable(last),
 				Optional.ofNullable(countMax));
 	}
-	
+
 	@GET
 	@Path("/ping")
 	@ApiOperation(nickname = "ping", value = "Resurce test method", httpMethod = "GET")

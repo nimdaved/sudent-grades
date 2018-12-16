@@ -13,7 +13,7 @@ Data file student_classes.json is binded in the application binary
 Application can be pointed to external json data file with java property data, 
 e.g.  -Ddata=~/some-other-file.json 
 
-#Build
+# Build
 Implemented with gradle
 
 ## To build
@@ -21,9 +21,9 @@ Posix:		./gradlew clean build
 Windows: 	gradlew clean build
 
 ## To run
-Posix:			./gradlew clean run
-Windows: 		gradlew clean run
-Alternatively:	java -jar ./build/libs/student-grades.jar.
+Posix:							./gradlew clean run
+Windows: 						gradlew clean run
+Alternatively (after build):		java -jar ./build/libs/student-grades.jar.
 
 
 ## To test
@@ -32,17 +32,17 @@ Windows: 	gradlew clean test
 
 # Documentation
 
-##Swagger documentation
-It is accessible on http://localhost:8080/swagger.json
-or http://localhost:8080/swagger.yml
+## Swagger documentation
+Accessible on http://localhost:8080/swagger.json
+or http://localhost:8080/swagger.yml after application startup
 
-##Usage examples
+## Usage examples
 curl http://localhost:8080/students/ping		
 curl http://localhost:8080/students/3002
 curl http://localhost:8080/students/?firstName=Tyler&lastName=Cortez&countMax=100
 
-##Distribution
-@See ./build/libs and ./	build/distributions	
+## Distribution
+@See ./build/libs and ./	build/distributions	(after build)
 
 
 # Shortcomings
